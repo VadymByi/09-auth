@@ -27,8 +27,12 @@ export const logout = async () => {
 };
 
 export const checkSession = async () => {
-  const response = await api.get<{ success: boolean; user?: User } | null>('/auth/session');
-  return response.data;
+  try {
+    const response = await api.get<{ success: boolean } | null>('/auth/session');
+    return response.data;
+  } catch (error) {
+    return null;
+  }
 };
 
 export const getMe = async () => {
