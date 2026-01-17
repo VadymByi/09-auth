@@ -1,10 +1,10 @@
 import { api } from './api';
-import { FetchNotesParams, Note, NoteTag } from '../../types/note';
+import { FetchNotesParams, Note } from '../../types/note';
 import { User } from '../../types/user';
 
 export interface AuthPayload {
   email: string;
-  password?: string;
+  password: string;
 }
 
 export interface UpdateUserPayload {
@@ -27,7 +27,7 @@ export const logout = async () => {
 };
 
 export const checkSession = async () => {
-  const response = await api.get<User | null>('/auth/session');
+  const response = await api.get<{ success: boolean; user?: User } | null>('/auth/session');
   return response.data;
 };
 
@@ -36,7 +36,7 @@ export const getMe = async () => {
   return response.data;
 };
 
-export const updateMe = async (data: Partial<User>) => {
+export const updateMe = async (data: UpdateUserPayload) => {
   const response = await api.patch<User>('/users/me', data);
   return response.data;
 };
@@ -51,7 +51,7 @@ export const fetchNoteById = async (id: string) => {
   return response.data;
 };
 
-export const createNote = async (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>) => {
+export const createNote = async (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt' | 'userId'>) => {
   const response = await api.post<Note>('/notes', note);
   return response.data;
 };

@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '../../lib/store/authStore';
-import { checkSession } from '../../lib/api/clientApi';
+import { checkSession, getMe } from '../../lib/api/clientApi';
 import MonkeyLoader from '../MonkeyLoader/MonkeyLoader';
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
@@ -15,13 +15,16 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        const user = await checkSession();
-        if (user) {
+        const session = await checkSession();
+
+        if (session) {
+          const user = await getMe();
           setUser(user);
         } else {
           clearIsAuthenticated();
         }
       } catch (error) {
+        console.error('Auth initialization failed:', error);
         clearIsAuthenticated();
       } finally {
         setIsLoading(false);
@@ -32,7 +35,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   }, [setUser, clearIsAuthenticated]);
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated && pathname.includes('/profile')) {
+    if (!isLoading && !isAuthenticated && pathname.startsWith('/profile')) {
       router.push('/sign-in');
     }
   }, [isLoading, isAuthenticated, pathname, router]);
