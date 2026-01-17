@@ -4,8 +4,8 @@ import { useId, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { createNote, type CreateNotePayload } from '@/lib/api';
-import { TAGS, NoteTag } from '@/types/note';
+import { createNote } from '@/lib/api/clientApi';
+import { TAGS, NoteTag, CreateNotePayload } from '@/types/note';
 import { useDraftStore } from '../../lib/store/noteStore';
 import css from './NoteForm.module.css';
 

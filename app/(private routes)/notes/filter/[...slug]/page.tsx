@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
 import NotesClient from './Notes.client';
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/serverApi';
 import { NoteTag, TAGS } from '@/types/note';
 import { getQueryClient } from '@/lib/getQueryClient';
 
@@ -12,7 +12,7 @@ type PageProps = {
   }>;
 };
 
-const PER_PAGE = 10;
+const PER_PAGE = 12;
 
 const getTagFromSlug = (slug?: string[]): NoteTag | undefined => {
   const rawTag = slug?.[0];

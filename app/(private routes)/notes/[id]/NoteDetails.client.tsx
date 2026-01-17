@@ -1,9 +1,9 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { fetchNoteById } from '@/lib/api';
-import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
+
 import css from './NoteDetails.module.css';
+import { fetchNoteById } from '@/lib/api/clientApi';
 
 interface Props {
   noteId: string;
@@ -25,7 +25,6 @@ export default function NoteDetailsClient({ noteId }: Props) {
 
   return (
     <div className={css.container}>
-      <Breadcrumbs title={note.title} />
       <div className={css.item}>
         <div className={css.header}>
           <h2>{note.title}</h2>
@@ -36,4 +35,3 @@ export default function NoteDetailsClient({ noteId }: Props) {
     </div>
   );
 }
-

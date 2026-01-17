@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import css from './Home.module.css';
+import css from './page.module.css';
 export const metadata: Metadata = {
   title: 'Site not found | NoteHub',
   description: 'Unfortunately, such pages are not available in NoteHub.',

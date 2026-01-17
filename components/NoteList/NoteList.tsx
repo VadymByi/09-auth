@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteNote } from '@/lib/api';
 import toast from 'react-hot-toast';
 import css from './NoteList.module.css';
 import { Note } from '@/types/note';
+import { deleteNote } from '@/lib/api/clientApi';
 
 interface NoteListProps {
   notes: Note[];
@@ -72,4 +72,3 @@ export default function NoteList({ notes }: NoteListProps) {
     </ul>
   );
 }
-

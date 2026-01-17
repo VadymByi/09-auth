@@ -12,10 +12,10 @@ import Pagination from '@/components/Pagination/Pagination';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import MonkeyLoader from '@/components/MonkeyLoader/MonkeyLoader';
 
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/clientApi';
 import { NoteTag } from '@/types/note';
 
-const PER_PAGE = 10;
+const PER_PAGE = 12;
 const MONKEY_DURATION = 3000;
 
 type NotesClientProps = {
@@ -50,7 +50,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
   }, [isFetching]);
 
   useEffect(() => {
-    if (debouncedSearch && data && data.notes.length === 0) {
+    if (debouncedSearch && data && data.notes?.length === 0) {
       toast('No notes found', { icon: '🔍' });
     }
   }, [data, debouncedSearch]);
@@ -88,7 +88,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
         </Link>
       </header>
 
-      {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
+      {data && data.notes?.length > 0 && <NoteList notes={data.notes} />}
 
       <MonkeyLoader show={showMonkey} duration={MONKEY_DURATION} />
     </div>
