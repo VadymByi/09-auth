@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const title = `${note.title} | NoteHub`;
     const description = note.content.slice(0, 150);
-    const url = `https://08-zustand-qlb4javdi-vadymbyis-projects.vercel.app/notes/${id}`;
+    const url = `https://09-auth-ecru-alpha.vercel.app/notes${id}`;
 
     return {
       title,

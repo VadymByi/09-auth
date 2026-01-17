@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sign Up | NoteHub',
     description: 'Log out of your NoteHub account.',
-    url: `#/sign-up`,
+    url: `https://09-auth-ecru-alpha.vercel.app/sign-up`,
 
     images: [
       {
